@@ -1,5 +1,20 @@
+<div class="navcontainer">
+  <nav class="navbar">
+    <div class="container">
+      <ul class="navbar-list">
+        <li class="navbar-item" ng-click="showbuttons=!showbuttons;showadmin=false;showuser=false;"><a class="navbar-link" href >Emulator</a></li>
+        <li class="navbar-item notifications">
+          <span ng-class="['notification', 'notification-'+notification.type]" ng-repeat="notification in notifications.getAll() track by $index">
+              {{notification.message}} 
+          </span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
 <div class="container">
-  <div ng-hide="emulations.length">
+  <div ng-show="emulation">
     <h4>Create Emulation</h4>
   	<!-- <button ng-show="emulations.length" ng-click="showcreate=true">Create new emulation</button> -->
     <form>
@@ -17,7 +32,7 @@
     <h4 ng-if="emulation.html">Emulation Preview</h4>
   </div>
 
-  <div ng-show="emulations.length">
+  <div ng-hide="emulation">
     <pagination-dr objects="emulations" visible="emulations"></pagination-dr>
     <table class="u-full-width">
       <thead>
@@ -30,10 +45,10 @@
       </thead>
       <tbody>
         <tr ng-repeat="item in emulations">
-          <td><a href="#/view?id={{item._id}}">{{item.name}}</a></td>
+          <td><a href ng-click="view(item._id)">{{item.name}}</a></td>
           <td>{{item.created | date:'yyyy-MM-dd h:mm a'}}</td>
           <td>{{item.updated | date:'yyyy-MM-dd h:mm a'}}</td>
-          <td><a href="#/?id={{item._id}}">edit</a></td>
+          <td><a href ng-click="emulation=item">edit</a></td>
         </tr>
       </tbody>
     </table>
@@ -41,7 +56,7 @@
 </div>
 
 
-<div ng-hide="emulations.length" ng-if="emulation.html">
+<div ng-show="emulation" ng-if="emulation.html">
   <hr>
     <div class="emulationpreview" ng-bind-html="emulation.html"></div>
   </div>

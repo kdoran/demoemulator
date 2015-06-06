@@ -1,7 +1,7 @@
 var EmulatorApp = angular.module('EmulatorApp', [
   'ngRoute',
   'EmulatorApp.HomeCtrl',
-  'EmulatorApp.headerDr',
+  'EmulatorApp.ViewCtrl',
   'EmulatorApp.tableDr',
   'EmulatorApp.paginationDr',
   'EmulatorApp.InitSr',
@@ -21,8 +21,8 @@ EmulatorApp.run(['InitSr', function(InitSr) {
 EmulatorApp.config(['$routeProvider','$sceProvider', function($routeProvider,$sceProvider) {
   $sceProvider.enabled(false);
   $routeProvider
-    .when('/view', { templateUrl: 'views/view.html', controller: 'ViewCtrl'}),
-    .when('/', { templateUrl: 'views/home.html', controller: 'HomeCtrl'})
+    .when('/view', { templateUrl: 'views/view.html', controller: 'ViewCtrl'})
+    .when('/', { templateUrl: 'views/home.html', controller: 'HomeCtrl', reloadOnSearch: false});
 }]);
 
 // EmulatorApp.config(['$httpProvider', function($httpProvider) {

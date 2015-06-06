@@ -1,10 +1,24 @@
 angular.module('EmulatorApp.HomeCtrl', []).
 controller('HomeCtrl',
   ['$scope',
+  '$location',
   'QuerySr',
   'DocSr',
-  function($scope,QuerySr,DocSr) {
+  'NotificationsSr',
+  function($scope,$location,QuerySr,DocSr,NotificationsSr) {
 
+    $scope.view = function(id){
+      $location.path("view").search({"id" : id});
+      window.location.reload();
+    };
+
+    $scope.notifications = NotificationsSr;
+    $scope.hide_admin = true,
+        $scope.hide_dash = true, $scope.loggedin = false; 
+
+    $scope.$on('$routeChangeError', function(event, current, previous, rejection){
+      NotificationsSr.setCurrent('errors.route.changeError', 'error', {}, {rejection: rejection});
+    });
     // demo data
     $scope.inputurl = "http://getskeleton.com/";
     $scope.inputhtml = "<!DOCTYPE html>\
@@ -700,7 +714,13 @@ controller('HomeCtrl',
 
     $scope.save = function(){
       DocSr.update($scope.emulation).then(function(response){
-        console.log(response);
+        if (!$sccope.emulation._id){
+          $sccope.emulation._rev = response._rev;
+          $sccope.emulation._id = response._id;
+          $scope.emulations.push($scope.response);
+        }
+        $sccope.emulation._rev = response._rev;
+        $scope.emulation = null;
       }).catch(function(err){console.log(err)});
     };
     $scope.demoemulation();
