@@ -1,0 +1,47 @@
+<div class="container">
+  <div ng-hide="emulations.length">
+    <h4>Create Emulation</h4>
+  	<!-- <button ng-show="emulations.length" ng-click="showcreate=true">Create new emulation</button> -->
+    <form>
+      <div class="row">
+        <div class="six columns">
+          <label for="inputurl">Url of page to emulate</label>
+          <input class="u-full-width" ng-model="inputurl" type="text" id="inputurl">
+        </div>
+      </div>
+      <label for="inputhtml">Raw HTML</label>
+      <textarea ng-change="demoemulation()" ng-model="inputhtml" class="u-full-width"id="inputhtml"></textarea>
+      <button ng-show="emulation.html" ng-click="save()" class="button-default" type="submit">Save Emulation</button>
+    </form>
+
+    <h4 ng-if="emulation.html">Emulation Preview</h4>
+  </div>
+
+  <div ng-show="emulations.length">
+    <pagination-dr objects="emulations" visible="emulations"></pagination-dr>
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Emulation</th>
+          <th>Created</th>
+          <th>Updated</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in emulations">
+          <td><a href="#/view?id={{item._id}}">{{item.name}}</a></td>
+          <td>{{item.created | date:'yyyy-MM-dd h:mm a'}}</td>
+          <td>{{item.updated | date:'yyyy-MM-dd h:mm a'}}</td>
+          <td><a href="#/?id={{item._id}}">edit</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div ng-hide="emulations.length" ng-if="emulation.html">
+  <hr>
+    <div class="emulationpreview" ng-bind-html="emulation.html"></div>
+  </div>

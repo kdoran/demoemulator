@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" ng-app="EmulatorApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <title>Emulator</title>
+  <link rel="stylesheet" href="css/normalize-3.0.2.css"/>
+  <link rel="stylesheet" href="css/skeleton-2.0.4.css"/>
+  <link rel="stylesheet" href="css/emulator.css"/>
+</head>
+<body>
+  <div header-dr ></div>
+  <div ng-view class="ng-view-top">
+  </div>
+
+
+<!-- lib -->
+  <script src="vendor/lodash-3.8.0.js"></script>
+  <script src="vendor/pouchdb-3.2.1.js"></script>
+  <script src="vendor/angular/angular-1.2.20.js"></script>
+  <script src="vendor/angular/angular-route.min.js"></script>
+
+  <script src="factories/initviews-fct.js"></script>
+
+  <script src="templates-sr.js"></script>
+  <script src="services/init-sr.js"></script>
+  <script src="services/dataset-sr.js"></script>
+  <script src="services/localizedmessages-sr.js"></script>
+  <script src="services/notifications-sr.js"></script>
+  <script src="services/query-sr.js"></script>
+  <script src="services/doc-sr.js"></script>
+
+  <script src="controllers/home-ctrl.js"></script>
+
+  <script src="directives/header-dr.js"></script>
+  <script src="directives/table-dr.js"></script>
+  <script src="directives/pagination-dr.js"></script>
+
+  <script src="app.js"></script>
+  <script src="constants/messages.js"></script>
+
+</body>
+</html>

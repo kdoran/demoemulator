@@ -1,0 +1,14 @@
+<div class="navcontainer">
+  <nav class="navbar">
+    <div class="container">
+      <ul class="navbar-list">
+        <li class="navbar-item" ng-click="showbuttons=!showbuttons;showadmin=false;showuser=false;"><a class="navbar-link" href >Emulator</a></li>
+        <li class="navbar-item notifications">
+          <span ng-class="['notification', 'notification-'+notification.type]" ng-repeat="notification in notifications.getAll() track by $index">
+              {{notification.message}} 
+          </span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

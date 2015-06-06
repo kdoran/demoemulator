@@ -1,0 +1,5 @@
+<div class="small align-right">
+  <span ng-hide="skip === 0"  href ng-click="previous_page()"><a href>« Previous</a>  | </span>
+  {{skip + 1}} - {{skip + visible.length}} of {{objects.length}}
+  <span  ng-hide="(skip + visible.length) === objects.length" href ng-click="next_page()"> | <a href>Next »</a></span>
+</div>
