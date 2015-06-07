@@ -1,11 +1,11 @@
-<div class="navcontainer">
+<div class="navcontainer" id="top">
   <nav class="navbar">
     <div class="container">
       <ul class="navbar-list">
-        <li class="navbar-item" ng-click="showbuttons=!showbuttons;showadmin=false;showuser=false;"><a class="navbar-link" href >Emulator</a></li>
+        <li class="navbar-item" ng-click="showabout=!showabout;"><a class="navbar-link" href >Emulator</a></li>
         <li class="navbar-item notifications">
           <span ng-class="['notification', 'notification-'+notification.type]" ng-repeat="notification in notifications.getAll() track by $index">
-              {{notification.message}} 
+            <span ng-bind-html="notification.message"></span>
           </span>
         </li>
       </ul>
@@ -14,25 +14,10 @@
 </div>
 
 <div class="container">
-  <div ng-show="emulation">
-    <h4>Create Emulation</h4>
-  	<!-- <button ng-show="emulations.length" ng-click="showcreate=true">Create new emulation</button> -->
-    <form>
-      <div class="row">
-        <div class="six columns">
-          <label for="inputurl">Url of page to emulate</label>
-          <input class="u-full-width" ng-model="inputurl" type="text" id="inputurl">
-        </div>
-      </div>
-      <label for="inputhtml">Raw HTML</label>
-      <textarea ng-change="demoemulation()" ng-model="inputhtml" class="u-full-width"id="inputhtml"></textarea>
-      <button ng-show="emulation.html" ng-click="save()" class="button-default" type="submit">Save Emulation</button>
-    </form>
 
-    <h4 ng-if="emulation.html">Emulation Preview</h4>
-  </div>
+  <button ng-hide="emulation" ng-click="createnew()">Create new emulation</button>
 
-  <div ng-hide="emulation">
+  <div ng-if="!emulation">
     <pagination-dr objects="emulations" visible="emulations"></pagination-dr>
     <table class="u-full-width">
       <thead>
@@ -41,22 +26,47 @@
           <th>Created</th>
           <th>Updated</th>
           <th>Edit</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="item in emulations">
+        <tr ng-repeat="item in emulations track by $index">
           <td><a href ng-click="view(item._id)">{{item.name}}</a></td>
           <td>{{item.created | date:'yyyy-MM-dd h:mm a'}}</td>
           <td>{{item.updated | date:'yyyy-MM-dd h:mm a'}}</td>
-          <td><a href ng-click="emulation=item">edit</a></td>
+          <td><a href ng-click="edit(item)">edit</a></td>
+          <td><a href  ng-click="showtransactiondelete=!showtransactiondelete">delete</a><span ng-show="showtransactiondelete"> | confirm delete? (this cannot be undone) <a href ng-click="showtransactiondelete=false;deleteemulation(item)">confirm, delete</a> | <a href ng-click="showtransactiondelete=false">cancel</a></span></td>
         </tr>
       </tbody>
     </table>
   </div>
+  <div ng-show="emulation">
+    <h4>Create Emulation</h4>
+    <form>
+      <div class="row">
+        <div class="six columns">
+          <label for="inputurl">Url of page to emulate</label>
+          <input class="u-full-width" ng-model="inputurl" type="text" id="inputurl">
+        </div>
+      </div>
+      <label for="inputhtml">Raw HTML</label>
+      <textarea ng-model="inputhtml" class="u-full-width"id="inputhtml"></textarea>
+      <div class="row">
+        <div class="six columns">
+          <label for="emulationname">Name of emulation</label>
+          <input class="u-full-width" ng-model="emulation.name" placeholder="e.g. XYZ client's landing page" type="text" id="emulationname">
+        </div>
+      </div>
+      <button ng-click="demoemulation()" class="button-default">Preview Emulation</button>
+      <button ng-show="emulation.html" ng-click="save()" class="button-primary" type="submit">Save Emulation</button>
+      <button ng-show="emulations.length" ng-click="emulation=null" class="button-default">Cancel</button>
+    </form>
+
+    <h4 ng-if="emulation.html">Emulation Preview</h4>
+  </div>
 </div>
 
-
-<div ng-show="emulation" ng-if="emulation.html">
+<div ng-show="emulation" ng-if="showpreview">
   <hr>
-    <div class="emulationpreview" ng-bind-html="emulation.html"></div>
-  </div>
+  <div class="emulationpreview" ng-bind-html="emulation.html"></div>
+</div>
