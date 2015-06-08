@@ -12,7 +12,8 @@ controller('HomeCtrl',
 
     $scope.createnew = function(){
       $scope.emulation = {
-        "type" : "emulation"
+        "type" : "emulation",
+        "latest" : true
       };
     };
 
@@ -28,9 +29,18 @@ controller('HomeCtrl',
     load_emulations();
 
     $scope.edit = function(em){
+      if ($scope.emulation)
+        $scope.emulation.latest = false;
       $scope.emulation = em;
+      $scope.emulation.latest = true;
       $scope.inputurl = $scope.emulation.url;
       $scope.inputhtml = $scope.emulation.html;
+    };
+
+    $scope.cancel = function(){
+      $scope.emulation = null;
+      $scope.inputurl = null;
+      $scope.inputhtml = null;
     };
 
     $scope.view = function(id){
@@ -47,6 +57,7 @@ controller('HomeCtrl',
     $scope.save = function(){
       if (!$scope.inputurl || !$scope.inputhtml || !$scope.emulation.name)
         return;
+      delete $scope.emulation.latest;
       //add a base tag using custom string splice function to insert it after the head element
       if (!$scope.emulation._id){
         if ($scope.inputurl.lastIndexOf("/") + 1 !== $scope.inputurl.length)
@@ -56,13 +67,14 @@ controller('HomeCtrl',
       }
       DocSr.update($scope.emulation).then(function(response){
         $scope.emulation._rev = response.rev;
+        $scope.emulation.latest = true;
         if (!$scope.emulation._id){
           $scope.emulation._id = response.id;
           $scope.emulations.push($scope.emulation);
         }
         NotificationsSr.setCurrent('resource.saved','info',
           {"resourcetype" : 'emulation',"resourcename" : $scope.emulation.name});
-        $scope.emulation = null;
+        $scope.cancel();
       }).catch(function(err){console.log(err)});
     };
   }]);

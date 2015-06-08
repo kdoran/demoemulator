@@ -31,7 +31,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="item in emulations track by $index">
-          <td><a href ng-click="view(item._id)">{{item.name}}</a></td>
+          <td><button class="button-default" ng-class="{'button-primary' : item.latest}" ng-click="view(item._id)">{{item.name}}</button></td>
           <td>{{item.created | date:'yyyy-MM-dd h:mm a'}}</td>
           <td>{{item.updated | date:'yyyy-MM-dd h:mm a'}}</td>
           <td><a href ng-click="edit(item)">edit</a></td>
@@ -58,7 +58,7 @@
         </div>
       </div>
       <button ng-class="{'button-primary' : inputurl && inputhtml && emulation.name}" id="saveButton" ng-click="save()" class="button-default" type="submit">Save Emulation</button>
-      <button ng-show="emulations.length" ng-click="emulation=null" class="button-default">Cancel</button>
+      <button ng-show="emulations.length" ng-click="cancel()" class="button-default">Cancel</button>
     </form>
   </div>
 </div>
