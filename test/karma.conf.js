@@ -1,11 +1,11 @@
 // Karma configuration
-// Generated on Mon Jun 08 2015 07:05:13 GMT-0500 (CDT)
+// Generated on Mon Jun 08 2015 17:13:50 GMT-0500 (CDT)
 
 module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '../../',
+    basePath: '../',
 
 
     // frameworks to use
@@ -15,17 +15,20 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      // '*.js',
-      'vendor/angular/*.js',
-      '**/*.js',
+      'vendor/**/*.js',
+      'app.js',
+      'constants/**/*.js',
+      'controllers/**/*.js',
+      'directives/**/*.js',
+      'factories/**/*.js',
+      'services/**/*.js',
+      'templates-sr.js',
+      'test/unit/**/*.js'
     ],
 
 
-    // // list of files to exclude
+    // list of files to exclude
     exclude: [
-      'gulpfile.js',
-      '**/node_modules/gulp-angular-templatecache/**',
-      '**/e2e/**'
     ],
 
 

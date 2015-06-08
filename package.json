@@ -34,6 +34,6 @@
   },
   "scripts": {
     "start": "protractor test/e2e/e2e-config.js",
-    "test": "node node_modules/karma/bin/karma start test/unit/unit-config.js"
+    "test": "node node_modules/karma/bin/karma start test/unit-config.js"
   }
 }
