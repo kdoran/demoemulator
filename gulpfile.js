@@ -22,8 +22,8 @@ var appTemplates = function() {
 gulp.task('scripts', function() {
   var templates = appTemplates();
   var scripts = gulp.src([
-    'vendor/lodash-3.8.0.js',
-    'vendor/pouchdb-3.2.1.js',
+    'vendor/lodash-*.js',
+    'vendor/pouchdb-*.js',
     // 'vendor/pouchdb.authentication.js',
     'vendor/angular/*.js',
     'controllers/**/*.js',

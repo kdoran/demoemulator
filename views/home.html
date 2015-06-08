@@ -45,28 +45,20 @@
     <form>
       <div class="row">
         <div class="six columns">
-          <label for="inputurl">Url of page to emulate</label>
-          <input class="u-full-width" ng-model="inputurl" type="text" id="inputurl">
+          <label for="inputurl">Copy + paste URL of page to emulate</label>
+          <input class="u-full-width" ng-model="inputurl" placeholder="http://www.wikipedia.org/" type="text" id="inputurl">
         </div>
       </div>
-      <label for="inputhtml">Raw HTML</label>
+      <label for="inputhtml">Copy + paste raw HTML (view page source)</label>
       <textarea ng-model="inputhtml" class="u-full-width"id="inputhtml"></textarea>
       <div class="row">
         <div class="six columns">
-          <label for="emulationname">Name of emulation</label>
+          <label for="emulationname">Name of emulation for reference</label>
           <input class="u-full-width" ng-model="emulation.name" placeholder="e.g. XYZ client's landing page" type="text" id="emulationname">
         </div>
       </div>
-      <button ng-click="demoemulation()" class="button-default">Preview Emulation</button>
-      <button ng-show="emulation.html" ng-click="save()" class="button-primary" type="submit">Save Emulation</button>
+      <button ng-class="{'button-primary' : inputurl && inputhtml && emulation.name}" id="saveButton" ng-click="save()" class="button-default" type="submit">Save Emulation</button>
       <button ng-show="emulations.length" ng-click="emulation=null" class="button-default">Cancel</button>
     </form>
-
-    <h4 ng-if="emulation.html">Emulation Preview</h4>
   </div>
-</div>
-
-<div ng-show="emulation" ng-if="showpreview">
-  <hr>
-  <div class="emulationpreview" ng-bind-html="emulation.html"></div>
 </div>

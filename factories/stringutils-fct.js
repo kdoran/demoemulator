@@ -3,10 +3,10 @@ angular.module('EmulatorApp.StringUtilsFct', [])
 
   var fact = {};
 
-  String.prototype.splice = function( idx, rem, s ) {
-    return (this.slice(0,idx) + s + this.slice(idx + Math.abs(rem)));
+  String.prototype.splice = function( idx, s ) {
+    return (this.slice(0,idx) + s + this.slice(idx));
   };
 
-  return [emulations];
+  return fact;
 
 }]);

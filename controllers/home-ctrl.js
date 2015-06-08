@@ -5,11 +5,8 @@ controller('HomeCtrl',
   'QuerySr',
   'DocSr',
   'NotificationsSr',
-  function($scope,$location,QuerySr,DocSr,NotificationsSr) {
-
-    var insertstring = function (original,index, string) {
-      return original.substring(0, index) + string + original.substring(index, original.length);
-    };
+  'StringUtilsFct',
+  function($scope,$location,QuerySr,DocSr,NotificationsSr,StringUtilsFct) {
 
     $scope.notifications = NotificationsSr;
 
@@ -55,12 +52,12 @@ controller('HomeCtrl',
         if ($scope.inputurl.lastIndexOf("/") + 1 !== $scope.inputurl.length)
           $scope.inputurl = $scope.inputurl + "/"
         $scope.emulation.url = $scope.inputurl.substring(0,$scope.inputurl.lastIndexOf('/')+1);
-        $scope.emulation.html = $scope.inputhtml.splice(($scope.inputhtml.indexOf('>', $scope.inputhtml.indexOf("<head"))+1), 0, '<base href="' + $scope.emulation.url + '"/>');
+        $scope.emulation.html = $scope.inputhtml.splice($scope.inputhtml.indexOf('</head>'), '<base href="' + $scope.emulation.url + '"/>');
       }
       DocSr.update($scope.emulation).then(function(response){
-        $scope.emulation._rev = response._rev;
+        $scope.emulation._rev = response.rev;
         if (!$scope.emulation._id){
-          $scope.emulation._id = response._id;
+          $scope.emulation._id = response.id;
           $scope.emulations.push($scope.emulation);
         }
         NotificationsSr.setCurrent('resource.saved','info',
