@@ -20,6 +20,7 @@ controller('DemoCtrl',
     var load_emulations = function(){
       QuerySr.list('emulations').then(function(response){
         $scope.emulations = _.pluck(response.rows,"doc");
+        console.log($scope.emulations[0]);
         if(!$scope.emulations.length){
           $scope.createnew();
         }

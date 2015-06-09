@@ -9,38 +9,13 @@
         A couple years ago I worked for a company whose application was a third party javascript library living on our clients' e-commerce websites. 
       </p>
       <p>
-        Often times, the client's business owners needed to see our product working on their web page before their team had integrated our javascript. For a lot of client websites, you could grab their source code and serve it up static, faking their site. Then you could integrate our code, design our app to match their styles, and demo it to the client.
+        Often times, the client's business owners needed to see our product working on their web page before their team had integrated our javascript. For a lot of websites, you could grab their source code and serve it up static, faking their site. Then you could integrate our code, design our app to match their styles, and demo it to the client.
       </p>
       <p>
-        I built a tool which streamlined the quick saving, editing, and serving up of a client's webpage. We ended up using it on a large number of launches. It doesn't work well when there are other 3rd party resources, and for actual  debugging we'd use tools like Charles Proxy, but it was a quick way to show clients our product on their site.  
+        I built a tool for the quick saving, editing, and serving up of a client's webpage. We ended up using it on a large number of launches. It doesn't work well when there are other 3rd party resources, and for actual  debugging we'd use tools like Charles Proxy, but it was a quick way to show clients our product on their site.  
       </p>
+      <a class="button button-default" href="#/demo">Try demo</a>
+      <a class="button button-default" href="https://github.com/tablesdata/demoemulator">View project on github</a>
     </div>
-  </div>
-  <h3>How it works</h3>
-  <hr>
-  <div class="row">
-    <p class="columns eight">
-      Say your client vends aqueducts. The top of their home page looks like this, and you need to get them to put a twitter icon right next to the title:
-    </p>
-    <img src="media/aqueductsrus.jpg"/>
-    <p>
-      Their project manager wants to see what it would look like, however their developer hasn't figured out how to do it yet. Without access to their code base, you pull up the emulator and paste in their URL:
-    </p>
-    <form>
-      <div class="row">
-        <div class="six columns">
-          <label for="inputurl">Copy + paste URL of page to emulate</label>
-          <input class="u-full-width" placeholder="http://www.wikipedia.org/" value="https://aqueductsrus.wordpress.com/" type="text" id="inputurl">
-        </div>
-      </div>
-      <label for="inputhtml">Copy + paste raw HTML (view page source)</label>
-      <textarea class="u-full-width"id="inputhtml">{{fakehtml}}</textarea>
-      <div class="row">
-        <div class="six columns">
-          <label for="emulationname">Name of emulation for reference</label>
-          <input class="u-full-width" placeholder="e.g. XYZ client's landing page" type="text" id="emulationname">
-        </div>
-      </div>
-    </form>
   </div>
 </div>

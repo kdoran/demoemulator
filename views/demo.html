@@ -8,7 +8,7 @@
     <table class="u-full-width">
       <thead>
         <tr>
-          <th>Emulation</th>
+          <th>View Emulation</th>
           <th>Created</th>
           <th>Updated</th>
           <th>Edit</th>
@@ -21,7 +21,7 @@
           <td>{{item.created | date:'yyyy-MM-dd h:mm a'}}</td>
           <td>{{item.updated | date:'yyyy-MM-dd h:mm a'}}</td>
           <td><a href ng-click="edit(item)">edit</a></td>
-          <td><a href  ng-click="showtransactiondelete=!showtransactiondelete">delete</a><span ng-show="showtransactiondelete"> | confirm delete? (this cannot be undone) <a href ng-click="showtransactiondelete=false;deleteemulation(item)">confirm, delete</a> | <a href ng-click="showtransactiondelete=false">cancel</a></span></td>
+          <td><a href ng-show="!showtransactiondelete"  ng-click="showtransactiondelete=!showtransactiondelete">delete</a><span ng-show="showtransactiondelete">confirm delete? (this cannot be undone) <a href ng-click="showtransactiondelete=false;deleteemulation(item)">confirm, delete</a> | <a href ng-click="showtransactiondelete=false">cancel</a></span></td>
         </tr>
       </tbody>
     </table>
