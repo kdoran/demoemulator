@@ -1,5 +1,5 @@
-angular.module('EmulatorApp.CreateCtrl', []).
-controller('CreateCtrl',
+angular.module('EmulatorApp.DemoCtrl', []).
+controller('DemoCtrl',
   ['$scope',
   '$location',
   'QuerySr',
@@ -63,7 +63,7 @@ controller('CreateCtrl',
         if ($scope.inputurl.lastIndexOf("/") + 1 !== $scope.inputurl.length)
           $scope.inputurl = $scope.inputurl + "/"
         $scope.emulation.url = $scope.inputurl.substring(0,$scope.inputurl.lastIndexOf('/')+1);
-        $scope.emulation.html = $scope.inputhtml.splice($scope.inputhtml.indexOf('</head>'), '<base href="' + $scope.emulation.url + '"/>');
+        $scope.emulation.html = StringUtilsFct.insertAfterTag($scope.inputhtml,'head','<base href="' + $scope.emulation.url + '"/>');
       }
       DocSr.update($scope.emulation).then(function(response){
         $scope.emulation._rev = response.rev;

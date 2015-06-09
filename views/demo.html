@@ -17,7 +17,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="item in emulations track by $index">
-          <td><button class="button-default" ng-class="{'button-primary' : item.latest}" ng-click="view(item._id)">{{item.name}}</button></td>
+          <td><button class="button-default view" ng-class="{'button-primary' : item.latest}" ng-click="view(item._id)">{{item.name}}</button></td>
           <td>{{item.created | date:'yyyy-MM-dd h:mm a'}}</td>
           <td>{{item.updated | date:'yyyy-MM-dd h:mm a'}}</td>
           <td><a href ng-click="edit(item)">edit</a></td>

@@ -3,9 +3,9 @@ angular.module('EmulatorApp.StringUtilsFct', [])
 
   var fact = {};
 
-  fact.insertBefore = function(s, insertBeforeString, stringToInsert ) {
-    var splitup = s.split(insertBeforeString);
-    return splitup[0] + stringToInsert + insertBeforeString + splitup[1];
+  fact.insertAfterTag = function(s, tagName, stringToInsert ) {
+    var index = s.toLowerCase().indexOf("<" + tagName) + ("<" + tagName).length + s.toLowerCase().split("<" + tagName)[1].indexOf(">");
+    return s.substring(0,index+1) + stringToInsert + s.substring(index+1);
   };
 
   return fact;

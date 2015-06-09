@@ -1,7 +1,7 @@
 var EmulatorApp = angular.module('EmulatorApp', [
   'ngRoute',
   'EmulatorApp.HomeCtrl',
-  'EmulatorApp.CreateCtrl',
+  'EmulatorApp.DemoCtrl',
   'EmulatorApp.ViewCtrl',
   'EmulatorApp.tableDr',
   'EmulatorApp.paginationDr',
@@ -32,7 +32,8 @@ EmulatorApp.run(['$rootScope','$location','InitSr', function($rootScope,$locatio
 
   $rootScope.$watch(function () {return $location.path()}, function (newLocation, oldLocation) {
     if($rootScope.actualLocation === newLocation) {
-      if($rootScope.actualLocation === "/")
+      if($rootScope.actualLocation === "/demo")
+      // console.log('back hit',$rootScope.actualLocation);
         window.location.href = resetURL;
     }
   });
@@ -42,7 +43,7 @@ EmulatorApp.config(['$routeProvider','$sceProvider', function($routeProvider,$sc
   $sceProvider.enabled(false);
   $routeProvider
   .when('/view', { templateUrl: 'views/view.html', controller: 'ViewCtrl'})
-  .when('/create', { templateUrl: 'views/create.html', controller: 'CreateCtrl'})
+  .when('/demo', { templateUrl: 'views/demo.html', controller: 'DemoCtrl'})
   .when('/', { templateUrl: 'views/home.html', controller: 'HomeCtrl'});
 }]);
 
