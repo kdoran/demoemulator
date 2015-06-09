@@ -1,0 +1,50 @@
+<header-dr></header-dr>
+
+<div class="container">
+  <button ng-hide="emulation" ng-click="createnew()">Create new emulation</button>
+
+  <div ng-if="!emulation">
+    <pagination-dr objects="emulations" visible="emulations"></pagination-dr>
+    <table class="u-full-width">
+      <thead>
+        <tr>
+          <th>Emulation</th>
+          <th>Created</th>
+          <th>Updated</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in emulations track by $index">
+          <td><button class="button-default" ng-class="{'button-primary' : item.latest}" ng-click="view(item._id)">{{item.name}}</button></td>
+          <td>{{item.created | date:'yyyy-MM-dd h:mm a'}}</td>
+          <td>{{item.updated | date:'yyyy-MM-dd h:mm a'}}</td>
+          <td><a href ng-click="edit(item)">edit</a></td>
+          <td><a href  ng-click="showtransactiondelete=!showtransactiondelete">delete</a><span ng-show="showtransactiondelete"> | confirm delete? (this cannot be undone) <a href ng-click="showtransactiondelete=false;deleteemulation(item)">confirm, delete</a> | <a href ng-click="showtransactiondelete=false">cancel</a></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div ng-show="emulation">
+    <h4>Create Emulation</h4>
+    <form>
+      <div class="row">
+        <div class="six columns">
+          <label for="inputurl">Copy + paste URL of page to emulate</label>
+          <input class="u-full-width" ng-model="inputurl" placeholder="http://www.wikipedia.org/" type="text" id="inputurl">
+        </div>
+      </div>
+      <label for="inputhtml">Copy + paste raw HTML (view page source)</label>
+      <textarea ng-model="inputhtml" class="u-full-width"id="inputhtml"></textarea>
+      <div class="row">
+        <div class="six columns">
+          <label for="emulationname">Name of emulation for reference</label>
+          <input class="u-full-width" ng-model="emulation.name" placeholder="e.g. XYZ client's landing page" type="text" id="emulationname">
+        </div>
+      </div>
+      <button ng-class="{'button-primary' : inputurl && inputhtml && emulation.name}" id="saveButton" ng-click="save()" class="button-default" type="submit">Save Emulation</button>
+      <button ng-show="emulations.length" ng-click="cancel()" class="button-default">Cancel</button>
+    </form>
+  </div>
+</div>

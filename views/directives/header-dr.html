@@ -1,0 +1,15 @@
+<div class="navcontainer" id="top">
+  <nav class="navbar">
+    <div class="container">
+      <ul class="navbar-list">
+        <li class="navbar-item"><a class="navbar-link" href="#/" >Emulator</a></li>
+        <li class="navbar-item"><a class="navbar-link" href="#/create" >Demo</a></li>
+        <li class="navbar-item notifications">
+          <span ng-class="['notification', 'notification-'+notification.type]" ng-repeat="notification in notifications.getAll() track by $index">
+            <span ng-bind-html="notification.message"></span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
